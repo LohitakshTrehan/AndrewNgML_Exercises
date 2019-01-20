@@ -48,7 +48,9 @@ pause;
 
 % Scale features and set them to zero mean
 fprintf('Normalizing Features ...\n');
-
+% FIRST!!! Normalize here and X has x_1 and x_2
+% later add x_0 = 1 to it while computing cost function
+% return modified X, without x_0, mu i.e. mean, sigma that is deviation from normalisation function
 [X mu sigma] = featureNormalize(X);
 
 % Add intercept term to X
@@ -76,7 +78,7 @@ X = [ones(m, 1) X];
 % Hint: By using the 'hold on' command, you can plot multiple
 %       graphs on the same figure.
 %
-% Hint: At prediction, make sure you do the same feature normalization.
+% IMP-->  Hint: At prediction, make sure you do the same feature normalization.
 %
 
 fprintf('Running gradient descent ...\n');
@@ -104,8 +106,9 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
-
+area=((1650-mu(1,1))/sigma(1,1));
+br = ((3-mu(1,2))/sigma(1,2));
+price = [1 area br]*theta; % You should change this
 
 % ============================================================
 
@@ -150,7 +153,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
+price = [1 1650 3] * theta;
 
 % ============================================================
 

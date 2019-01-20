@@ -16,17 +16,17 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCostMulti) and gradient here.
     %
-
-
-
-
-
-
-
-
-
-
-
+    temp = X * theta;
+    error = temp - y;
+    newX = error' * X;
+    theta = theta - ((alpha/m) * newX');
+    
+    %theta_z = theta(1,1) - (alpha *(1/m)*  (((X(:,1))')*((X*theta)-y))  );
+    %theta_one = theta(2,1) - (alpha *(1/m)*  (((X(:,2))')*((X*theta)-y))  );
+    %theta_two = theta(3,1) - (alpha *(1/m)*  (((X(:,3))')*((X*theta)-y))  );
+    %theta(1,1) = theta_z;
+    %theta(2,1) = theta_one;
+    %theta(3,1) = theta_two;
     % ============================================================
 
     % Save the cost J in every iteration    
